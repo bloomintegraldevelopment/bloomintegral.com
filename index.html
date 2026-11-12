@@ -7,11 +7,7 @@
 <meta name="theme-color" content="#000000">
 <meta name="description" content="Aprender a vivir: un programa de salud mental y felicidad de tres meses, creado por la psiquiatra Pilar de Castro-Manglano, para conocerte mejor y decidir cómo quieres vivir.">
 <title>BLOOM · Web preliminar</title>
-<!-- Medición sin cookies con Plausible (decidido el 12 de noviembre de 2026). No guarda nada en el navegador y cuenta visitas agregadas.
-     Ignora solas las visitas desde localhost y desde archivos locales. Si se cambia de proveedor (p. ej. Umami), solo cambia esta línea.
-     La página emite los eventos; ver «Measurement without cookies» en el script. Pendiente: visto bueno legal antes de publicar. -->
-<script defer data-domain="bloomintegral.com" src="https://plausible.io/js/script.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<!-- Sin analítica ni cookies (revisión legal del 12 de noviembre de 2026: añadir analítica exigiría banner con Aceptar y Rechazar). La página emite eventos internos (ver «Measurement without cookies» en el script) que no salen del navegador mientras no haya un proveedor. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-40%200%20507%20513.5%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23D5D9DF%22/%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%238B919B%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234E535B%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%20fill%3D%22url%28%23f%29%22%3E%3Cpath%20d%3D%22M339.88%2C490.64v.02c9.03%2C19.12-19.44%2C32.71-28.64%2C13.66v-.02c-9.02-19.12%2C19.44-32.71%2C28.64-13.66Z%22/%3E%3Cpath%20d%3D%22M320.16%2C449.22l19.71%2C41.42c-9.2-19.05-37.66-5.46-28.65%2C13.66l-19.57-41.12c9.58-3.82%2C19.1-8.45%2C28.51-13.96Z%22/%3E%3Cpath%20d%3D%22M88.75%2C1.22s.03%2C0%2C.04%2C0l-.08.04s.02-.02.03-.03Z%22/%3E%3Cpath%20d%3D%22M77.49%2C13.33l56.52%2C118.72-36%2C109.43%2C28.24%2C9.29%2C26.28-79.84%2C45.81%2C96.23-43.11%2C130.79%2C30.68%2C10.08%2C32.52-98.66%2C73.23%2C153.82C141.19%2C523.22-22.88%2C381.11%2C2.64%2C199.55%2C10.43%2C132.27%2C33.28%2C64.19%2C77.49%2C13.33Z%22/%3E%3Cpath%20d%3D%22M370.47%2C410.11c-16.19%2C16.09-33.07%2C29.05-50.3%2C39.11l-73.61-154.63%2C102.57%2C35.29%2C9.81-31.25-132.09-45.44-46.27-97.19%2C88.68%2C31.59%2C8.68-28.59-115.52-41.17L106.36.11c202.23-5.75%2C428.95%2C224.14%2C264.11%2C410.01Z%22/%3E%3Crect%20x%3D%22152.19%22%20y%3D%22392.78%22%20width%3D%2244.34%22%20height%3D%2214.28%22%20transform%3D%22translate%28133.11%20-34.4%29%20rotate%2818.13%29%22/%3E%3Crect%20x%3D%2288.94%22%20y%3D%22235.54%22%20width%3D%2244.34%22%20height%3D%2214.28%22%20transform%3D%22translate%2881.04%20-22.53%29%20rotate%2818.13%29%22/%3E%3Crect%20x%3D%22328.15%22%20y%3D%22307.75%22%20width%3D%2242.75%22%20height%3D%2214.28%22%20transform%3D%22translate%28755.74%2077.59%29%20rotate%28107.69%29%22/%3E%3Crect%20x%3D%22251.71%22%20y%3D%22159.43%22%20width%3D%2242.75%22%20height%3D%2214.28%22%20transform%3D%22translate%28514.78%20-42.98%29%20rotate%28107.69%29%22/%3E%3C/g%3E%3C/svg%3E">
 <script>
 (function () {
@@ -643,6 +639,12 @@ dialog.legal::backdrop{background:rgba(11,11,10,.55)}
 .legal dt{font-weight:600;font-size:.9375rem}
 .legal dd{margin:2px 0 0;color:var(--sand-600);font-size:.9375rem}
 .legal p{font-size:.9375rem;color:var(--sand-600)}
+.legal h3{margin:22px 0 4px;font:600 1rem/1.3 var(--font-sans)}
+.legal ul{margin:0 0 12px;padding-left:20px;color:var(--sand-600);font-size:.9375rem}
+.legal li{margin:3px 0}
+.ltable{width:100%;border-collapse:collapse;font-size:.875rem;color:var(--sand-600);margin:0 0 12px}
+.ltable th,.ltable td{text-align:left;vertical-align:top;padding:8px 10px 8px 0;border-bottom:1px solid var(--sand-200)}
+.privacy p{margin:0 0 2px}
 .legal__close{position:sticky;top:0;float:right;margin:-12px -12px 0 0;color:var(--sand-600)}
 
 /* ---- Fraunces, soft: the «font» shorthand of every heading resets the axes, so they are set again here ---- */
@@ -1303,12 +1305,20 @@ main>.fit{padding-bottom:0}
         </fieldset>
         <div class="hp" aria-hidden="true"><label>No rellenar este campo<input type="text" name="web" tabindex="-1" autocomplete="off"></label></div>
         <div class="field">
-          <label class="check" id="consentLabel"><input type="checkbox" id="fConsent" name="consentimiento" aria-describedby="eConsent"><span>Quiero recibir el aviso de lanzamiento y novedades de BLOOM por correo. Tengo 18 años o más.</span></label>
+          <label class="check" id="consentLabel"><input type="checkbox" id="fConsent" name="consentimiento" aria-describedby="eConsent"><span>Quiero que BLOOM me avise por correo cuando abra el programa y me envíe novedades sobre sus programas y actividades. Tengo 18 años o más. Puedo darme de baja cuando quiera. He leído la <button class="linkbtn" type="button" data-legal="privacidad">información sobre protección de datos</button>.</span></label>
           <p class="err" id="eConsent"></p>
+        </div>
+        <div class="privacy">
+          <p><b>Información básica sobre protección de datos</b></p>
+          <p><b>Responsable:</b> BLOOM Integral Development, S.L.</p>
+          <p><b>Finalidad:</b> avisarte del lanzamiento del programa y enviarte novedades de BLOOM por correo.</p>
+          <p><b>Legitimación:</b> tu consentimiento.</p>
+          <p><b>Destinatarios:</b> no cedemos tus datos. Proveedores tecnológicos (Google, Microsoft, GitHub), con garantías para transferencias a EE. UU.</p>
+          <p><b>Derechos:</b> acceso, rectificación, supresión y otros, escribiendo a contacto@bloomintegral.com.</p>
+          <p><b>Más información:</b> <button class="linkbtn" type="button" data-legal="privacidad">Política de privacidad</button>.</p>
         </div>
         <div><button class="btn btn--lg" type="submit">Avísame</button></div>
         <p class="status" id="fStatus" role="status" aria-live="polite"></p>
-        <p class="privacy">Responsable: BLOOM INTEGRAL DEVELOPMENT, S.L. Usaremos tu correo solo para avisarte del lanzamiento del programa y contarte novedades de BLOOM. Puedes darte de baja y ejercer tus derechos escribiendo a contacto@bloomintegral.com. Más información en la <button class="linkbtn" type="button" data-legal="privacidad">política de privacidad</button>.</p>
       </form>
     </div>
   </section>
@@ -1359,10 +1369,11 @@ main>.fit{padding-bottom:0}
         <button class="linkbtn" type="button" data-legal="aviso">Aviso legal</button>
         <button class="linkbtn" type="button" data-legal="privacidad">Política de privacidad</button>
         <button class="linkbtn" type="button" data-legal="cookies">Cookies</button>
+        <button class="linkbtn" type="button" data-legal="salud">Aviso sobre salud</button>
         <a href="mailto:contacto@bloomintegral.com">contacto@bloomintegral.com</a>
       </div>
     </div>
-    <p class="foot__care">BLOOM es un programa educativo y no sustituye la atención de un profesional sanitario. En España, si tienes pensamientos de suicidio o te preocupa alguien, llama al 024, gratuito y disponible las 24 horas. En una emergencia, llama al 112.</p>
+    <p class="foot__care">BLOOM es un programa educativo y no sustituye la atención de un profesional sanitario. Si estás en crisis, llama al 024; ante una emergencia, al 112.</p>
     <div class="foot__bottom">
       <p>© 2026 BLOOM INTEGRAL DEVELOPMENT, S.L.</p>
       <p>www.bloomintegral.com</p>
@@ -1383,37 +1394,92 @@ main>.fit{padding-bottom:0}
     <button class="iconbtn legal__close" id="legalClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <article id="legal-aviso" hidden>
       <h2 id="legalTitle">Aviso legal</h2>
-      <p class="draft">Borrador pendiente de revisión legal.</p>
-      <dl>
-        <div><dt>Titular</dt><dd>BLOOM INTEGRAL DEVELOPMENT, S.L.</dd></div>
-        <div><dt>Domicilio social</dt><dd><span class="todo">[POR CONFIRMAR]</span></dd></div>
-        <div><dt>NIF</dt><dd><span class="todo">[POR CONFIRMAR]</span></dd></div>
-        <div><dt>Datos registrales</dt><dd><span class="todo">[POR CONFIRMAR]</span></dd></div>
-        <div><dt>Contacto</dt><dd>contacto@bloomintegral.com</dd></div>
-        <div><dt>Actividad</dt><dd>Formación no reglada.</dd></div>
-      </dl>
-      <p>BLOOM es un programa educativo y no sustituye la atención de un profesional sanitario.</p>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI), te informamos de que este sitio web, bloomintegral.com, es titularidad de:</p>
+      <ul>
+        <li><b>Titular:</b> BLOOM INTEGRAL DEVELOPMENT, S.L.</li>
+        <li><b>NIF:</b> <span class="todo">[POR CONFIRMAR]</span></li>
+        <li><b>Domicilio social:</b> C/ Hospital, 32, escalera B, 7.º, puerta 13, 46001 Valencia (España)</li>
+        <li><b>Correo electrónico:</b> contacto@bloomintegral.com</li>
+        <li><b>Datos registrales:</b> inscrita en el Registro Mercantil de Valencia, tomo <span class="todo">[POR CONFIRMAR]</span>, folio <span class="todo">[POR CONFIRMAR]</span>, hoja V-<span class="todo">[POR CONFIRMAR]</span>, inscripción <span class="todo">[POR CONFIRMAR]</span>.</li>
+      </ul>
+      <p><b>Objeto.</b> Este sitio informa sobre el programa «Salud mental y felicidad» de BLOOM y permite a las personas interesadas pedir que se les avise cuando abra. De momento no se vende ningún producto ni servicio a través de esta web.</p>
+      <p><b>Uso del sitio.</b> Te comprometes a usar este sitio de forma lícita y a no dañar su funcionamiento ni la seguridad de sus sistemas.</p>
+      <p><b>Contenido educativo.</b> Los contenidos de este sitio y del programa son divulgativos y educativos. No constituyen consejo médico ni psicológico ni sustituyen la atención de un profesional sanitario. Consulta el apartado «Aviso sobre salud».</p>
+      <p><b>Propiedad intelectual e industrial.</b> Los textos, imágenes, diseño, logotipos y contenidos del programa son propiedad de BLOOM INTEGRAL DEVELOPMENT, S.L. o se usan con autorización de sus titulares. No está permitido reproducirlos, distribuirlos ni transformarlos sin autorización escrita, salvo para uso personal y privado.</p>
+      <p><b>Enlaces externos.</b> Este sitio contiene enlaces a sitios de terceros (por ejemplo, librerías y redes sociales). BLOOM no controla esos sitios ni es responsable de su contenido ni de sus políticas de privacidad.</p>
+      <p><b>Protección de datos y almacenamiento local.</b> Consulta la Política de privacidad y el apartado «Cookies y almacenamiento local».</p>
+      <p><b>Legislación aplicable.</b> Este aviso legal se rige por la legislación española.</p>
+      <p class="draft">Última actualización: 14 de noviembre de 2026.</p>
     </article>
     <article id="legal-privacidad" hidden>
       <h2>Política de privacidad</h2>
-      <p class="draft">Borrador pendiente de revisión legal.</p>
-      <dl>
-        <div><dt>Quién trata tus datos</dt><dd>BLOOM INTEGRAL DEVELOPMENT, S.L. Contacto: contacto@bloomintegral.com.</dd></div>
-        <div><dt>Qué datos guardamos</dt><dd>Tu correo, tu nombre si lo dejas, si el programa es para ti o para tu organización, la fecha en que te apuntaste y el enlace por el que llegaste, por ejemplo el de una conferencia.</dd></div>
-        <div><dt>Para qué</dt><dd>Para avisarte del lanzamiento del programa y contarte novedades de BLOOM. Nada más.</dd></div>
-        <div><dt>Con qué base</dt><dd>Tu consentimiento, que puedes retirar cuando quieras escribiendo a contacto@bloomintegral.com.</dd></div>
-        <div><dt>Quién más los trata</dt><dd>Google (Firebase) guarda la lista de personas apuntadas, en servidores de la Unión Europea. Microsoft gestiona el correo de contacto. GitHub aloja esta web y no recibe los datos del formulario. <span class="todo">[POR CONFIRMAR: garantías para transferencias fuera de la Unión Europea]</span></dd></div>
-        <div><dt>Estadísticas de visitas</dt><dd>Plausible (Plausible Insights OÜ, Estonia, servidores en la Unión Europea) cuenta las visitas y qué partes de la página se ven, sin cookies y sin guardar tu dirección IP ni datos que te identifiquen. <span class="todo">[POR CONFIRMAR: revisión legal de la medición de audiencia]</span></dd></div>
-        <div><dt>Cuánto tiempo</dt><dd>Hasta que retires tu consentimiento. <span class="todo">[POR CONFIRMAR: plazo máximo si no hay respuesta]</span></dd></div>
-        <div><dt>Cómo darte de baja</dt><dd>Escribe a contacto@bloomintegral.com y borramos tus datos.</dd></div>
-        <div><dt>Tus derechos</dt><dd>Acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a contacto@bloomintegral.com. Si crees que no los respetamos, puedes reclamar ante la Agencia Española de Protección de Datos.</dd></div>
-        <div><dt>Edad</dt><dd>Para apuntarte tienes que tener 18 años o más.</dd></div>
-      </dl>
+      <p class="draft">Versión v2026-11-14. Última actualización: 14 de noviembre de 2026.</p>
+      <h3>1. Quién es el responsable de tus datos</h3>
+      <p>BLOOM INTEGRAL DEVELOPMENT, S.L. (en adelante, «BLOOM»), NIF <span class="todo">[POR CONFIRMAR]</span>, con domicilio en C/ Hospital, 32, escalera B, 7.º, puerta 13, 46001 Valencia (España). Para cualquier cuestión sobre tus datos, escribe a <b>contacto@bloomintegral.com</b>.</p>
+      <h3>2. Qué datos tratamos</h3>
+      <p>Cuando rellenas el formulario «Avísame cuando abra», tratamos:</p>
+      <ul>
+        <li>tu correo electrónico;</li>
+        <li>tu nombre, si decides darlo;</li>
+        <li>si el programa es para ti o para tu organización;</li>
+        <li>la fecha y hora de tu alta;</li>
+        <li>cómo llegaste al formulario (por ejemplo, «web» o el enlace o código QR de una conferencia);</li>
+        <li>la versión del texto que aceptaste.</li>
+      </ul>
+      <p>No te preguntamos nada sobre tu salud. Te pedimos que no nos envíes información sobre tu salud por correo. Si lo haces, solo la usaremos para responderte y la borraremos después.</p>
+      <h3>3. Para qué los usamos</h3>
+      <ul>
+        <li>Para avisarte por correo de la apertura del programa «Salud mental y felicidad».</li>
+        <li>Para enviarte novedades de BLOOM sobre sus programas y actividades.</li>
+        <li>Para atender tus consultas y tus solicitudes de baja o de ejercicio de derechos.</li>
+      </ul>
+      <p>No elaboramos perfiles ni tomamos decisiones automatizadas sobre ti.</p>
+      <h3>4. Por qué podemos usarlos (base jurídica)</h3>
+      <p>Tu <b>consentimiento</b>, que das al marcar la casilla del formulario (artículo 6.1.a del Reglamento General de Protección de Datos, RGPD, y artículo 21 de la LSSI). Puedes retirarlo cuando quieras, sin que eso afecte a lo hecho antes. Para atender tus consultas y solicitudes, la base es el cumplimiento de nuestras obligaciones legales.</p>
+      <h3>5. Cuánto tiempo los guardamos</h3>
+      <p>Hasta que te des de baja y, como máximo, <b>24 meses desde tu alta</b> si en ese tiempo no nos confirmas que sigues interesado o interesada. Pasado ese plazo los borramos.</p>
+      <p>Cuando te das de baja, borramos tus datos de la lista y guardamos solo, bloqueados, tu correo y las fechas de alta y baja durante <b>3 años</b>, únicamente para poder demostrar que respetamos tu decisión si una autoridad o un juez lo pide. Después los eliminamos.</p>
+      <h3>6. Quién más trata tus datos</h3>
+      <p>No vendemos ni cedemos tus datos a nadie, salvo obligación legal. Para funcionar usamos estos proveedores, que actúan por cuenta de BLOOM y con contrato:</p>
+      <ul>
+        <li><b>Google</b> (Firebase / Cloud Firestore): guarda la lista en servidores de la Unión Europea (Bélgica y Países Bajos). Durante el envío del formulario, Google puede ver tu dirección IP.</li>
+        <li><b>Microsoft</b> (Microsoft 365), a través de Harmonia Labs: gestiona el buzón contacto@bloomintegral.com.</li>
+        <li><b>GitHub</b> (GitHub Pages): aloja la web. No recibe los datos del formulario, pero, como cualquier servidor, recibe datos técnicos de conexión (como la IP) para mostrarte las páginas.</li>
+      </ul>
+      <h3>7. Transferencias fuera de la Unión Europea</h3>
+      <p>Google, Microsoft y GitHub son o pertenecen a empresas de Estados Unidos y pueden acceder a datos desde allí, por ejemplo para dar soporte o garantizar la seguridad. Las tres están adheridas al <b>Marco de Privacidad de Datos UE-EE. UU.</b>, reconocido por la Comisión Europea como garantía de un nivel de protección adecuado (Decisión de Ejecución (UE) 2023/1795). Además, sus contratos incluyen las <b>cláusulas contractuales tipo</b> aprobadas por la Comisión Europea. Puedes pedirnos más información escribiendo a contacto@bloomintegral.com.</p>
+      <h3>8. Tus derechos</h3>
+      <p>Puedes pedir el <b>acceso</b> a tus datos, su <b>rectificación</b> o <b>supresión</b>, la <b>limitación</b> del tratamiento, <b>oponerte</b> a él y pedir la <b>portabilidad</b> de tus datos. También puedes <b>retirar tu consentimiento</b> en cualquier momento.</p>
+      <p>Escribe a <b>contacto@bloomintegral.com</b> indicando qué derecho quieres ejercer, desde el correo con el que te diste de alta. Te responderemos en el plazo máximo de un mes.</p>
+      <p>Si crees que no hemos tratado bien tus datos, puedes reclamar ante la <b>Agencia Española de Protección de Datos</b> (www.aepd.es).</p>
+      <h3>9. Cómo darte de baja</h3>
+      <p>Escribe a contacto@bloomintegral.com con el asunto «Baja». Cuando empecemos a enviar correos, cada uno incluirá también un enlace o dirección para darte de baja de forma gratuita.</p>
+      <h3>10. Edad</h3>
+      <p>Este servicio es solo para personas de 18 años o más. Si sabemos que alguien menor de edad se ha apuntado, borraremos sus datos.</p>
+      <h3>11. Seguridad</h3>
+      <p>Solo BLOOM puede consultar la lista. Aplicamos medidas técnicas y organizativas adecuadas para proteger tus datos.</p>
+      <h3>12. Cambios</h3>
+      <p>Si cambiamos esta política, publicaremos la nueva versión aquí con su fecha. Si el cambio es importante, te avisaremos por correo.</p>
     </article>
     <article id="legal-cookies" hidden>
-      <h2>Cookies</h2>
-      <p class="draft">Borrador pendiente de revisión legal.</p>
-      <p>Esta web no usa cookies. Para saber cuántas personas la visitan y hasta dónde llegan, usa Plausible, una herramienta que no usa cookies, no guarda nada en tu dispositivo y no te identifica: solo cuenta visitas y acciones de forma agregada. <span class="todo">[POR CONFIRMAR: revisión legal de la medición de audiencia]</span> Aparte, la web solo guarda en tu navegador, sin enviarlo a nadie, si has pausado el movimiento de la página y, mientras no cierres la pestaña, que ya has visto la pantalla de entrada.</p>
+      <h2>Cookies y almacenamiento local</h2>
+      <p>Esta web <b>no usa cookies</b> ni herramientas de analítica o publicidad.</p>
+      <p>Para que funcione como eliges, guarda dos datos técnicos en tu navegador, que <b>no salen de tu dispositivo</b> ni nos permiten identificarte:</p>
+      <table class="ltable">
+        <thead><tr><th>Nombre</th><th>Tipo</th><th>Para qué</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr><td><code>bloom-motion</code></td><td>Almacenamiento local (<code>localStorage</code>)</td><td>Recordar si has pausado las animaciones</td><td>Hasta que lo borres desde tu navegador</td></tr>
+          <tr><td><code>bloom-intro</code></td><td>Almacenamiento de sesión (<code>sessionStorage</code>)</td><td>No repetir la pantalla de entrada durante tu visita</td><td>Se borra al cerrar la pestaña</td></tr>
+        </tbody>
+      </table>
+      <p>Son necesarios para prestar el servicio que pides o para recordar una preferencia que tú eliges, por lo que no requieren tu consentimiento (artículo 22.2 de la LSSI). Puedes borrarlos cuando quieras desde la configuración de tu navegador.</p>
+      <p>Si en el futuro usamos cookies u otras tecnologías que necesiten tu consentimiento, te lo pediremos antes de activarlas.</p>
+    </article>
+    <article id="legal-salud" hidden>
+      <h2>Aviso sobre salud</h2>
+      <p>BLOOM es un programa <b>educativo y de bienestar</b>. No es un servicio sanitario: no diagnostica, no trata ninguna enfermedad o trastorno y <b>no sustituye la atención de un profesional sanitario</b> (medicina, psicología clínica, psiquiatría). Participar en el programa no crea una relación entre profesional sanitario y paciente.</p>
+      <p>Si estás en tratamiento, <b>no lo dejes ni lo cambies</b> sin hablar con tu profesional sanitario.</p>
+      <p><b>Si estás pasando por un momento muy difícil o tienes pensamientos de hacerte daño,</b> llama al <b>024</b> (Línea de atención a la conducta suicida: gratuita, confidencial y disponible las 24 horas). <b>Ante una emergencia, llama al 112.</b></p>
     </article>
   </div>
 </dialog>
