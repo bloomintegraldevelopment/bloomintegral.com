@@ -686,6 +686,8 @@ dialog.legal::backdrop{background:rgba(11,11,10,.55)}
 .plan.is-open .acard{animation:cardIn 2s cubic-bezier(.22,.6,.22,1) backwards;animation-delay:calc(var(--i,0) * 260ms)}
 @keyframes cardIn{from{opacity:0;transform:translateX(-48px) scale(.97)}}
 @media (prefers-reduced-motion:reduce){.plan.is-open .acard{animation:none}}
+/* iPhone and iPad (WebKit) will not swipe a scroller that ignores the pointer: on touch screens and phones the strip takes the touch itself */
+@media (hover:none),(max-width:860px){.atrack{pointer-events:auto}}
 .motion-paused .plan.is-open .acard{animation:none}
 .fit{background:radial-gradient(42% 62% at 78% 40%,rgba(63,179,162,.2),transparent 70%),radial-gradient(40% 50% at 0% 60%,rgba(90,155,230,.12),transparent 70%),var(--mist-2);position:relative;overflow:clip}
 main>.fit{padding-bottom:0}
@@ -2904,6 +2906,29 @@ if (!Engine) root.classList.add('no-gl');
     if (moved) { track.classList.remove('dragging'); go(0); var i = index(); track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: (reduced || Motion.isPaused()) ? 'auto' : 'smooth' }); }
   });
   addEventListener('resize', ui); ui();
+  /* on the phone the cards pass on their own, gently, one every few seconds; a touch stops them, and they carry on a while after you let go */
+  var phone = window.matchMedia ? matchMedia('(max-width:860px)') : null, sec = $('#plan'), seen = false, auto = 0, holdUntil = 0;
+  function hold() { holdUntil = performance.now() + 7000; }
+  ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'wheel', 'keydown', 'focusin'].forEach(function (ev) { track.addEventListener(ev, hold, { passive: true }); });
+  prev.addEventListener('click', hold); next.addEventListener('click', hold);
+  document.addEventListener('bloom-area', hold);
+  function tick() {
+    if (!phone || !phone.matches || !seen || document.hidden || reduced || Motion.isPaused()) return;
+    if (sec && !sec.classList.contains('is-open') && sec.classList.contains('is-pre')) return;
+    if (performance.now() < holdUntil || track.classList.contains('dragging')) return;
+    var i = index() + 1; if (i > cards.length - 1 || track.scrollLeft > track.scrollWidth - track.clientWidth - 8) i = 0;
+    track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+    light(i);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        seen = e.isIntersecting;
+        clearInterval(auto); auto = 0;
+        if (seen) { holdUntil = Math.max(holdUntil, performance.now() + 2500); auto = setInterval(tick, 3800); }
+      });
+    }, { threshold: 0.6 }).observe(track);
+  }
 })();
 
 /* ================= On a phone the team and the two ways in scroll across: then they can be reached with the keyboard too ================= */
