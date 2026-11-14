@@ -688,6 +688,8 @@ dialog.legal::backdrop{background:rgba(11,11,10,.55)}
 @media (prefers-reduced-motion:reduce){.plan.is-open .acard{animation:none}}
 /* iPhone and iPad (WebKit) will not swipe a scroller that ignores the pointer: on touch screens and phones the strip takes the touch itself */
 @media (hover:none),(max-width:860px){.atrack{pointer-events:auto}}
+.atrack.drifting{scroll-snap-type:none}
+@media (min-width:861px){.acard--clone{display:none}}
 .motion-paused .plan.is-open .acard{animation:none}
 .fit{background:radial-gradient(42% 62% at 78% 40%,rgba(63,179,162,.2),transparent 70%),radial-gradient(40% 50% at 0% 60%,rgba(90,155,230,.12),transparent 70%),var(--mist-2);position:relative;overflow:clip}
 main>.fit{padding-bottom:0}
@@ -2434,6 +2436,18 @@ var Garden = (function (G) {
     onPick: function (n) { document.dispatchEvent(new CustomEvent('bloom-area', { detail: n })); } });
   var still = make('#roseStill canvas', { glow: 0.12, grown: true,
     place: function (w, h) { var fit = Math.min(1, (w / h) * 0.8 / 0.62); return { cx: w / 2, cy: 0.42 * h, r: 0.31 * h * fit }; } });
+  /* on the phone the eight cards drift past for ever: a hidden second copy of them follows the first, so the end joins the start with no jump */
+  (function () {
+    var tr = document.getElementById('areasTrack');
+    if (!tr || !window.matchMedia || !matchMedia('(max-width:860px)').matches) return;
+    $$('#areasTrack > .acard').forEach(function (c) {
+      var k = c.cloneNode(true);
+      k.classList.add('acard--clone'); k.setAttribute('aria-hidden', 'true'); k.setAttribute('inert', ''); k.removeAttribute('id');
+      Array.prototype.forEach.call(k.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
+      Array.prototype.forEach.call(k.querySelectorAll('a,button,[tabindex]'), function (n) { n.setAttribute('tabindex', '-1'); });
+      tr.appendChild(k);
+    });
+  })();
   $$('canvas.acard__img').forEach(function (cv) { new Tile(cv, 'area', +cv.dataset.k); });
   $$('canvas.tile__cv, canvas.fact__viz, canvas.path__img').forEach(function (cv) { new Tile(cv, cv.dataset.tile); });
   /* the three drawings next to Pilar's card play every time the cards come into view, one after the other */
@@ -2843,10 +2857,10 @@ if (!Engine) root.classList.add('no-gl');
 /* ================= The eight areas: a carousel, with the garden bringing forward the area you are on ================= */
 (function () {
   var track = $('#areasTrack'); if (!track) return;
-  var cards = $$('#areasTrack > .acard'), prev = $('#areasPrev'), next = $('#areasNext');
+  var cards = $$('#areasTrack > .acard:not(.acard--clone)'), prev = $('#areasPrev'), next = $('#areasNext');
   var wheel = $('#wheel'), idle = null;
   function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth; }
-  function index() { return clamp(Math.round(track.scrollLeft / step()), 0, cards.length - 1); }
+  function index() { return clamp(Math.round(track.scrollLeft / step()) % cards.length, 0, cards.length - 1); }
   function light(i) {
     if (!wheel) return;
     if (wheel.dataset.active !== String(i)) { wheel.dataset.active = i; if (Garden) Garden.focus(i); }
@@ -2906,28 +2920,39 @@ if (!Engine) root.classList.add('no-gl');
     if (moved) { track.classList.remove('dragging'); go(0); var i = index(); track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: (reduced || Motion.isPaused()) ? 'auto' : 'smooth' }); }
   });
   addEventListener('resize', ui); ui();
-  /* on the phone the cards pass on their own, gently, one every few seconds; a touch stops them, and they carry on a while after you let go */
-  var phone = window.matchMedia ? matchMedia('(max-width:860px)') : null, sec = $('#plan'), seen = false, auto = 0, holdUntil = 0;
-  function hold() { holdUntil = performance.now() + 7000; }
-  ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'wheel', 'keydown', 'focusin'].forEach(function (ev) { track.addEventListener(ev, hold, { passive: true }); });
+  /* on the phone the cards drift to the left without stopping, slowly enough to read; a finger takes over, and the drift picks up again from where you leave it */
+  var phone = window.matchMedia ? matchMedia('(max-width:860px)') : null, sec = $('#plan'), seen = false, holdUntil = 0, drift = 0, pos = -1, lastT = 0, lastI = -1;
+  var SPEED = 30;   /* px a second: about ten seconds a card */
+  var clones = track.querySelectorAll('.acard--clone');
+  function hold() { holdUntil = performance.now() + 2500; pos = -1; track.classList.remove('drifting'); }
+  ['pointerdown', 'pointerup', 'touchstart', 'touchmove', 'touchend', 'wheel', 'keydown', 'focusin'].forEach(function (ev) { track.addEventListener(ev, hold, { passive: true }); });
   prev.addEventListener('click', hold); next.addEventListener('click', hold);
   document.addEventListener('bloom-area', hold);
-  function tick() {
-    if (!phone || !phone.matches || !seen || document.hidden || reduced || Motion.isPaused()) return;
-    if (sec && !sec.classList.contains('is-open') && sec.classList.contains('is-pre')) return;
+  function loopWidth() { return clones.length ? clones[0].offsetLeft - cards[0].offsetLeft : 0; }
+  function frame(t) {
+    drift = 0;
+    if (!phone || !phone.matches || !seen || !clones.length || document.hidden || reduced || Motion.isPaused()) { track.classList.remove('drifting'); pos = -1; return; }
+    drift = requestAnimationFrame(frame);
+    var dt = lastT ? Math.min(0.1, (t - lastT) / 1000) : 0; lastT = t;
+    if (sec && sec.classList.contains('is-pre')) return;
     if (performance.now() < holdUntil || track.classList.contains('dragging')) return;
-    var i = index() + 1; if (i > cards.length - 1 || track.scrollLeft > track.scrollWidth - track.clientWidth - 8) i = 0;
-    track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
-    light(i);
+    var W = loopWidth(); if (!W) return;
+    if (pos < 0) { pos = track.scrollLeft; track.classList.add('drifting'); }
+    pos += SPEED * dt;
+    if (pos >= W) pos -= W;
+    track.scrollLeft = Math.round(pos);
+    var i = Math.round(pos / step()) % cards.length;
+    if (i !== lastI) { lastI = i; light(i); }
   }
+  function startDrift() { if (!drift) { lastT = 0; drift = requestAnimationFrame(frame); } }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && seen) startDrift(); });
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         seen = e.isIntersecting;
-        clearInterval(auto); auto = 0;
-        if (seen) { holdUntil = Math.max(holdUntil, performance.now() + 2500); auto = setInterval(tick, 3800); }
+        if (seen) { holdUntil = Math.max(holdUntil, performance.now() + 1200); startDrift(); }
       });
-    }, { threshold: 0.6 }).observe(track);
+    }, { threshold: 0.5 }).observe(track);
   }
 })();
 
